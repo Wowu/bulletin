@@ -1,0 +1,64 @@
+# Fastest policy
+config:
+  s3:
+    bucket: bulletin-aip7eito
+  efs:
+    mount_path: /mnt/efs
+  dynamodb:
+    table_name: bulletin-aip7eito
+  redis:
+    host: 172.16.0.10
+    port: 6379
+  relay:
+    host: 172.16.0.11
+    port: 12345
+  p2p:
+    host: 172.16.0.12
+    port: 12345
+rules:
+  - fully_serverless: true
+    vpc: true
+    method: efs
+  - fully_serverless: true
+    vpc: false
+    event_size:
+      less_than_or_eq: 400_000
+    method: dynamodb
+  - fully_serverless: true
+    vpc: false
+    event_size:
+      greater_than: 400_000
+    method: s3
+  - fully_serverless: false
+    vpc: false
+    method: p2p
+# ---
+# # Cost effective policy
+# rules:
+#   - fully_serverless: true
+#     vpc: true
+#     event_size:
+#       less_than_or_eq: 100_000
+#     method: efs
+#   - fully_serverless: true
+#     vpc: true
+#     event_size:
+#       greater_than: 100_000
+#     method: s3
+#   - fully_serverless: true
+#     vpc: false
+#     event_size:
+#       less_than_or_eq: 10_000
+#     method: dynamodb
+#   - fully_serverless: true
+#     vpc: false
+#     event_size:
+#       greater_than: 10_000
+#     method: s3
+#   - fully_serverless: false
+#     vpc: false
+#     method: p2p
+# ---
+# Trivial policy
+# rules:
+#   - method: s3

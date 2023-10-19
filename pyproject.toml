@@ -1,0 +1,8 @@
+[project]
+name = "bulletin"
+version = "0.0.5"
+description = "Event exchange for AWS Lambda."
+dependencies = ["boto3", "redis", "pyyaml"]
+
+[build-system]
+requires = ["setuptools", "wheel"]

@@ -1,0 +1,9 @@
+tensorflow
+pandas
+--extra-index-url https://dxsxsb220w9y2.cloudfront.net
+bulletin==0.0.5
+
+
+
+
+

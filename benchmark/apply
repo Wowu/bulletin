@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+
+if [ "$1" == "-s" ]; then
+  terraform apply -refresh=false -auto-approve
+else
+  terraform init
+  terraform apply -auto-approve
+fi

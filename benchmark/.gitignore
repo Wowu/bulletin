@@ -1,0 +1,9 @@
+.terraform
+*.tfstate*
+
+builds
+*.jsonl
+
+results*/
+
+output.json

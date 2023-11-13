@@ -1,0 +1,6 @@
+#!/bin/bash
+# Stop the EC2 instance
+
+id=$(bin/terraform output -json | jq -r '.instance_id.value')
+
+aws-vault exec personal -- aws ec2 stop-instances --instance-ids $id

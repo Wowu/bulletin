@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+mkdir -p $HOME/.terraform.d/plugin-cache
+export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+
+aws-vault exec personal -- terraform $@

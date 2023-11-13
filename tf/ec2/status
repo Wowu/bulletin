@@ -1,0 +1,6 @@
+#!/bin/bash
+# Show status of the EC2 instance
+
+id=$(bin/terraform output -json | jq -r '.instance_id.value')
+
+aws-vault exec personal -- aws ec2 describe-instance-status --instance-ids $id | jq -r '.InstanceStatuses[0].InstanceState.Name'
